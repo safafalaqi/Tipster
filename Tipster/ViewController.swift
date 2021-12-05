@@ -95,26 +95,26 @@ class ViewController: UIViewController {
         //to calculate the tip per person
         tipPerPerson(value:Int(sliderGroupSize.value * 100))
         
-        //to display the total amount including the tip for each percentage
+        //to display the total amount including the tip for each percentage and each person i
         if let a = amount.text , let l = lower.text ,
            let  aValue:Double = Double(a),
            let lValue:Double = Double(l.digitString) {
             lowerTotal.text =
-            String(format: "%.2f",(((aValue * lValue)/100.0)+aValue))
+            String(format: "%.2f", (((aValue * lValue)/100.0) + aValue) / Double(sliderGroupSize.value * 100))
         }
         
         if let a = amount.text , let m = mid.text ,
            let  aValue:Double = Double(a),
            let mValue:Double = Double(m.digitString) {
             midTotal.text =
-            String(format: "%.2f",(((aValue * mValue)/100.0)+aValue))
+            String(format: "%.2f",(((aValue * mValue)/100.0)+aValue) / Double(sliderGroupSize.value * 100))
         }
         
         if let a = amount.text , let h = higher.text ,
            let  aValue:Double = Double(a),
            let hValue:Double = Double(h.digitString) {
             higherTotal.text =
-            String(format: "%.2f",(((aValue * hValue)/100.0)+aValue))
+            String(format: "%.2f",(((aValue * hValue)/100.0)+aValue) / Double(sliderGroupSize.value * 100))
         }
       
     }
@@ -151,6 +151,7 @@ class ViewController: UIViewController {
         let currentValue = Int(sender.value * 100 )
         tipPerPerson(value:currentValue)
         groubLabel.text = "Group Size: \(currentValue)"
+        calculateTip()
     }
 }
 //an extention is used to execlude the percentage sign "%" from the digits when taking the percentage label to calculate the tip
